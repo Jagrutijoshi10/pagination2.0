@@ -1,0 +1,159 @@
+{
+    "employees":[
+        {
+            "empid":1,
+            "name":"jagruti",
+            "email":"jagruti@gmail.com",
+            "phnno":456784567
+
+        },
+        {
+            "empid":2,
+            "name":"kavi",
+            "email":"kavi@gmail.com",
+            "phnno":1234567
+
+        },
+        {
+            "empid":3,
+            "name":"sugunya",
+            "email":"suganya@gmail.com",
+            "phnno":987654
+
+        },
+        {
+            "empid":4,
+            "name":"devi",
+            "email":"devi@gmail.com",
+            "phnno":456784567
+
+        },
+        {
+            "empid":5,
+            "name":"rubi",
+            "email":"rubi@gmail.com",
+            "phnno":456784567
+
+        },
+        {
+            "empid":6,
+            "name":"satish",
+            "email":"satish@gmail.com",
+            "phnno":456784567
+
+        },
+        {
+            "empid":7,
+            "name":"mani",
+            "email":"mani@gmail.com",
+            "phnno":456784567
+
+        },
+        {
+            "empid":8,
+            "name":"neha",
+            "email":"neha@gmail.com",
+            "phnno":765432
+
+        },
+        {
+            "empid":9,
+            "name":"sneha",
+            "email":"sneha@gmail.com",
+            "phnno":456784567
+
+        },
+        {
+            "empid":10,
+            "name":"diya",
+            "email":"diya@gmail.com",
+            "phnno":456784567
+
+        },
+        {
+            "empid":11,
+            "name":"dhivya",
+            "email":"dhivya@gmail.com",
+            "phnno":456784567
+
+        },
+        {
+            "empid":12,
+            "name":"kansh",
+            "email":"kansh@gmail.com",
+            "phnno":9876543
+
+        },
+        {
+            "empid":13,
+            "name":"giya",
+            "email":"giya@gmail.com",
+            "phnno":123456
+
+        },
+        {
+            "empid":14,
+            "name":"jiya",
+            "email":"jiya@gmail.com",
+            "phnno":765432
+
+        },
+        {
+            "empid":15,
+            "name":"jisa",
+            "email":"jisa@gmail.com",
+            "phnno":45678
+
+        },{
+            "empid":16,
+            "name":"hary",
+            "email":"hary@gmail.com",
+            "phnno":34567890
+
+        },
+        {
+            "empid":17,
+            "name":"ansh",
+            "email":"ansh@gmail.com",
+            "phnno":9876543
+
+        },
+        {
+            "empid":18,
+            "name":"kavya",
+            "email":"kavya@gmail.com",
+            "phnno":45678423
+
+        },
+        {
+            "empid":19,
+            "name":"john",
+            "email":"john@gmail.com",
+            "phnno":45678901
+
+        },
+        {
+            "empid":20,
+            "name":"sam",
+            "email":"sam@gmail.com",
+            "phnno":98765432
+
+        },
+        {
+            "empid":21,
+            "name":"geny",
+            "email":"geny@gmail.com",
+            "phnno":765432
+
+        },
+        {
+            "empid":22,
+            "name":"lanie",
+            "email":"lanie@gmail.com",
+            "phnno":8764321
+
+        }
+      
+
+    ]
+}

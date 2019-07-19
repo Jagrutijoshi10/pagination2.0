@@ -1,0 +1,17 @@
+.center{
+    text-align: center
+}
+table.cen,tr.cen
+{
+    margin-left:auto; 
+    margin-right:auto;
+}
+.cent{
+  text-align: center;
+}
+span.right{
+  text-align: right;
+}
+ .colors{
+   background-color: red;
+  }

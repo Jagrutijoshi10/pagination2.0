@@ -1,0 +1,47 @@
+<div class="jumbotron">
+  <header>
+    {{ "The Total number of Employees are " + totalLength }}<br />
+    <span class="right">
+      <button type="button" class="btn btn-outline-dark" (click)="getAscendingOrder">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </button>
+      <button type="button" class="btn btn-outline-dark" (click)="getDescendingOrder">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
+    </span>
+    
+  </header>
+  <body>
+    <div *ngIf="list">
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let emp of rec">
+          <td>
+
+            <b>{{ emp.empid }}</b>
+          </td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.phnno }}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <footer class="cent">
+    <span *ngFor="let index of pages">
+      <button
+        class="btn btn-outline-dark"
+        (click)="getparams(index)"
+        [ngClass]="currentPage === index ? 'active' : ''">
+        {{ index + 1 }}
+      </button>
+    </span>
+  </footer>
+</div>
