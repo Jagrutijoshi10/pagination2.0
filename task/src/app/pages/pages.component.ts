@@ -8,39 +8,27 @@ import { PagesserviceService } from "../pagesservice.service";
 })
 export class PagesComponent implements OnInit {
   list: any;
-  rec: any =[];
+  rec: any = [];
   totalLength: any;
   totalPages: any;
   pages = [];
   start: any;
   end: any;
   limit: any = 4;
-  sortedarray=[]
+  sortedarray = []
   currentPage = 0;
-  temp:any;
-  constructor(private pagesService: PagesserviceService) {}
+  temp: any;
+  searchedList = [];
+  sl = []
+  constructor(private pagesService: PagesserviceService) { }
 
   ngOnInit() {
     this.pagesService.getuser(0, this.limit).subscribe(data => {
       this.list = data;
-      this.rec=this.list.records;
-      function SortByName(x,y) {
-        return ((x.name == y.name) ? 0 : ((x.name > y.name) ? 1 : -1 ));
-      }
-      this.rec.sort(SortByName);
-      // for(var n=0;n<this.rec.length;n++){
-      //   // document.write(this.rec[n].ID + ' ' + this.rec[n].Name + '<br>');
+      this.rec = this.list.records;
+      this.sortedarray = this.rec.sort();
+      // console.log(this.sortedarray)
 
-      //   console.log("success")
-      // }
-  
-      // for(var i=0;i<this.rec.length;i++){
-      //   this.getAscendingOrder(name)
-    
-      // }
-    this.sortedarray=this.rec.sort();
-    console.log(this.sortedarray)
-      
       this.totalLength = this.list.length;
       this.totalPages = Math.ceil(this.totalLength / this.limit);
       for (let i = 0; i < this.totalPages; i++) {
@@ -58,18 +46,36 @@ export class PagesComponent implements OnInit {
     }
     this.pagesService.getuser(this.start, this.end).subscribe(data => {
       this.list = data;
-      this.rec=this.list.records.sort();
-      console.log(this.rec);
+      this.rec = this.list.records.sort();
+      // console.log(this.rec);
     });
   }
-  // getAscendingOrder(obj){
-  //    this.rec.sort(function( a, b){
-  //     return (a[obj] > b[obj]) ? 1 : ((a[obj] < b[obj]) ? -1 : 0);
-  //    })
-  // }
-  // getDescendingOrder(){
+  getAscendingOrder() {
+    this.rec = this.list.records;
+    function SortByName(x, y) {
+      return ((x.name == y.name) ? 0 : ((x.name > y.name) ? 1 : -1));
+    }
+    this.rec.sort(SortByName);
+  }
+  getDescendingOrder() {
+    this.rec = this.list.records;
+    function SortByName(x, y) {
+      return ((x.name == y.name) ? 0 : ((x.name > y.name) ? 1 : -1));
+    }
+    this.rec.sort(SortByName).reverse();
+  }
+  search(value) {
+    this.searchedList = this.rec.filter((val) => val["name"].includes(value))
+    // this.sl = this.rec.filter((val)=> val["empid"].includes(parseInt(value))) 
+    this.sl = this.rec.filter((a) => {
+      return a.empid === parseInt(value);
+    });
+    //Searched Data
+    console.log(typeof (value))
+    console.log(this.searchedList)
+    console.log(this.sl)
+  }
 
-  // }
 }
 // this.pagesService.getinformation(this.limit).subscribe(data => {
 //   this.infomation = data;
@@ -98,4 +104,4 @@ export class PagesComponent implements OnInit {
 // this.st = this.end - 5;
 // }
 
-// >this.infomation.length?this.infomation.length: (i + 1) * this.limit;
+

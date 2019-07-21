@@ -2,15 +2,21 @@
   <header>
     {{ "The Total number of Employees are " + totalLength }}<br />
     <span class="right">
-      <button type="button" class="btn btn-outline-dark" (click)="getAscendingOrder">
+      <button type="button" class="btn btn-outline-dark" (click)="getAscendingOrder()">
         <span class="glyphicon glyphicon-chevron-up"></span>
       </button>
-      <button type="button" class="btn btn-outline-dark" (click)="getDescendingOrder">
+      <button type="button" class="btn btn-outline-dark" (click)="getDescendingOrder()">
         <span class="glyphicon glyphicon-chevron-down"></span>
       </button>
+
     </span>
-    
+    Search:<input type="text" id="searchString" placeholder="search by anything"
+      (input)="search($event.target.value)" />
+    <div *ngIf="searchedList then faketemplate">
+      <p>success</p>
+    </div>
   </header>
+
   <body>
     <div *ngIf="list">
       <table class="table table-bordered">
@@ -31,15 +37,24 @@
           <td>{{ emp.email }}</td>
           <td>{{ emp.phnno }}</td>
         </tr>
+        <ng-template #faketemplate>
+              <tr *ngFor="let emp of searchedList">
+                <td>
+                  <b>{{ emp.empid }}</b>
+                </td>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.phnno }}</td>
+              </tr>
+          </ng-template>
       </table>
     </div>
+
+
   </body>
   <footer class="cent">
     <span *ngFor="let index of pages">
-      <button
-        class="btn btn-outline-dark"
-        (click)="getparams(index)"
-        [ngClass]="currentPage === index ? 'active' : ''">
+      <button class="btn btn-outline-dark" (click)="getparams(index)" [ngClass]="currentPage === index ? 'active' : ''">
         {{ index + 1 }}
       </button>
     </span>
