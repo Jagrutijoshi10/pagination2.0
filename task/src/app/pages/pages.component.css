@@ -10,7 +10,7 @@ table.cen,tr.cen
   text-align: center;
 }
 span.right{
-  float: right;
+    float: right;
 }
  .colors{
    background-color: red;

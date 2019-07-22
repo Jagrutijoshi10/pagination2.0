@@ -4,16 +4,20 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
+import { SearchboxPipe } from './searchbox.pipe';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    PagesComponent
+    PagesComponent,
+    SearchboxPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
