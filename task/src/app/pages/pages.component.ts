@@ -23,8 +23,6 @@ export class PagesComponent implements OnInit {
 //  @Input() searchText;
 //  @Output() searchModelChange: EventEmitter<any> = new EventEmitter();
   public items=[]
-
-
   constructor(private pagesService: PagesserviceService,private data:SearchPipe) {
   }
 
