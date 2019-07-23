@@ -1,72 +1,82 @@
 <div class="jumbotron">
   <header>
     {{ "The Total number of Employees are " + totalLength }}<br />
-    <span >
-      
-     <span class="input-group-text" id="inputGroup-sizing-sm">search</span>&nbsp; &nbsp;
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="getAscendingOrder()"
-      >
-        <span class="glyphicon glyphicon-chevron-up"></span>
-      </button>
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="getDescendingOrder()"
-      >
-        <span class="glyphicon glyphicon-chevron-down"></span>
-      </button>
+    <span>
+      <form class="form-inline">
+        <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+        <input class="form-control form-control-sm ml-3 w-75"  [(ngModel)]="searchText" name="searchText" type="text" placeholder="Search" aria-label="Search" />
+      </form>
     </span>
     <!-- <div *ngIf="searchedList then faketemplate">
       <p>success</p>
     </div> -->
   </header>
+
   <body>
     <div *ngIf="list">
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
+            <th>
+              Id
+              <span>
+                <span class="btn-group" role="group"><button type="button" class="btn btn-light"
+                    (click)="getAscendingOrderForId()">
+                    <span class="fa fa-arrow-up"></span>
+                  </button>
+                  <button type="button" class="btn btn-light" (click)="getDescendingOrderForId()">
+                    <span class="fa fa-arrow-down"></span></button></span></span>
+            </th>
+            <th>
+              Name
+              <span><span class="btn-group" role="group"><button type="button" class="btn btn-light"
+                    (click)="getAscendingOrderForName()">
+                    <span class="fa fa-arrow-up"></span>
+                  </button>
+                  <button type="button" class="btn btn-light" (click)="getDescendingOrderForName()">
+                    <span class="fa fa-arrow-down"></span></button></span></span>
+            </th>
+            <th>
+              Email
+              <span><span class="btn-group" role="group"><button type="button" class="btn btn-light"
+                    (click)="getAscendingOrderForEmail()">
+                    <span class="fa fa-arrow-up"></span>
+                  </button>
+                  <button type="button" class="btn btn-light" (click)="getDescendingOrderForEmail()">
+                    <span class="fa fa-arrow-down"></span></button></span></span>
+            </th>
+            <th>
+              Phone Number
+              <span><span class="btn-group" role="group"><button type="button" class="btn btn-light"
+                    (click)="getAscendingOrderForPhnno()">
+                    <span class="fa fa-arrow-up"></span>
+                  </button>
+                  <button type="button" class="btn btn-light" (click)="getDescendingOrderForPhnno()">
+                    <span class="fa fa-arrow-down"></span></button></span></span>
+            </th>
           </tr>
         </thead>
-        <tr *ngFor="let emp of rec | searchbox: { name: searchText }">
+        <tbody>
+        <tr ng-repeat="emp in rec | filter:{searchText}">
           <td>
             <b>{{ emp.empid }}</b>
           </td>
           <td>{{ emp.name }}</td>
           <td>{{ emp.email }}</td>
           <td>{{ emp.phnno }}</td>
-        </tr>
+        </tr></tbody>
       </table>
     </div>
-    <!-- <div>
-  <ng-template #faketemplate>
-    <tr *ngFor="let emp of searchedList">
-      <td>
-        <b>{{ emp.empid }}</b>
-      </td>
-      <td>{{ emp.name }}</td>
-      <td>{{ emp.email }}</td>
-      <td>{{ emp.phnno }}</td>
-    </tr>
-</ng-template>
-</div> -->
+    <div>
+      <ng-template #faketemplate> </ng-template>
+    </div>
   </body>
   <footer class="cent">
     <span *ngFor="let index of pages">
-      <button
-        class="btn btn-outline-dark"
-        (click)="getparams(index)"
-        [ngClass]="currentPage === index ? 'active' : ''"
-      >
+      <button class="btn btn-outline-dark" (click)="getparams(index)" [ngClass]="currentPage === index ? 'active' : ''">
         {{ index + 1 }}
       </button>
     </span>
   </footer>
 </div>
-<!--  (keyup)="search($event.target.value)" -->
+<!-- (keyup)="search($event.target.value)" -->

@@ -4,20 +4,23 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
-import { SearchboxPipe } from './searchbox.pipe';
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from "@angular/forms";
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     PagesComponent,
-    SearchboxPipe
+    SearchPipe
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    // Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

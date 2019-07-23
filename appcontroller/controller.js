@@ -13,7 +13,7 @@ function sample() {
                 break;
             }
         }
-        res.send({ records: arr, length: infor.length })
+        res.send({ records: arr, length: infor.length ,alldata:infor})
     }
 }
 module.exports = new sample();

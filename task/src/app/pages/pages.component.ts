@@ -1,14 +1,15 @@
 import { Component, OnInit, Input ,Output,EventEmitter} from "@angular/core";
 import { PagesserviceService } from "../pagesservice.service";
-
+import { SearchPipe } from "../search.pipe";
 @Component({
   selector: "app-pages",
   templateUrl: "./pages.component.html",
-  styleUrls: ["./pages.component.css"]
+  styleUrls: ["./pages.component.css"],
+  providers:[SearchPipe]
 })
 export class PagesComponent implements OnInit {
-  list: any;
-  rec: any = [];
+  list: any=[];
+  public rec: any = [];
   totalLength: any;
   totalPages: any;
   pages = [];
@@ -16,14 +17,16 @@ export class PagesComponent implements OnInit {
   end: any;
   limit: any = 4;
   currentPage = 0;
-  searchedList = [];
-  sl = [];
- public searchText:string;
+  alldata=[];
+  public searchText:string='';
+
 //  @Input() searchText;
 //  @Output() searchModelChange: EventEmitter<any> = new EventEmitter();
   public items=[]
 
-  constructor(private pagesService: PagesserviceService) {}
+
+  constructor(private pagesService: PagesserviceService,private data:SearchPipe) {
+  }
 
   ngOnInit() {
     this.pagesService.getuser(0, this.limit).subscribe(data => {
@@ -34,7 +37,9 @@ export class PagesComponent implements OnInit {
       for (let i = 0; i < this.totalPages; i++) {
         this.pages.push(i);
       }
+      console.log(this.rec)
     });
+       
   }
 
   getparams(i) {
@@ -46,38 +51,68 @@ export class PagesComponent implements OnInit {
     }
     this.pagesService.getuser(this.start, this.end).subscribe(data => {
       this.list = data;
+      // this.alldata=this.list.alldata;
+   
       this.rec = this.list.records;
     });
   }
 
-  getAscendingOrder() {
+  getAscendingOrderForId() {
     this.rec = this.list.records;
-    function SortByName(x, y) {
+    function SortBy(x, y) {
+      return x.empid == y.empid ? 0 : x.empid < y.empid ? 1 : -1;
+    }
+    this.rec.sort(SortBy);
+  }
+  getAscendingOrderForName(){
+    this.rec = this.list.records;
+    function SortBy(x, y) {
       return x.name == y.name ? 0 : x.name > y.name ? 1 : -1;
     }
-    this.rec.sort(SortByName);
+    this.rec.sort(SortBy);
   }
-
-  getDescendingOrder() {
+  getAscendingOrderForEmail(){
     this.rec = this.list.records;
-    function SortByName(x, y) {
+    function SortBy(x, y) {
+      return x.email == y.email ? 0 : x.email < y.email ? 1 : -1;
+    }
+    this.rec.sort(SortBy);
+  }
+  getAscendingOrderForPhnno(){
+    this.rec = this.list.records;
+    function SortBy(x, y) {
+      return x.phnno == y.phnno ? 0 : x.phnno > y.phnno ? 1 : -1;
+    }
+    this.rec.sort(SortBy);
+  }
+  
+  getDescendingOrderForId() {
+    this.rec = this.list.records;
+    function SortBy(x, y) {
+      return x.empid == y.empid ? 0 : x.empid < y.empid ? 1 : -1;
+    }
+    this.rec.sort(SortBy).reverse();
+  }
+  getDescendingOrderForName() {
+    this.rec = this.list.records;
+    function SortBy(x, y) {
       return x.name == y.name ? 0 : x.name > y.name ? 1 : -1;
     }
-    this.rec.sort(SortByName).reverse();
+    this.rec.sort(SortBy).reverse();
   }
-
-  // search(value) {
-
-  //   if (value) {
-  //     let val1=Number(value.toString())
-  //     this.rec = this.rec.filter((val) => val["name"].includes(value.toLowerCase()) ||  val["empid"]===val1);
-      
-  //     // this.rec = this.rec.filter((val)=> val["empid"]==(val1))
-  //     console.log(typeof(val1))
-  //   } else {
-  //     // console.log(this.list.records);
-  //     this.rec = this.list.records;
-  //   }
-  // }
+  getDescendingOrderForEmail() {
+    this.rec = this.list.records;
+    function SortBy(x, y) {
+       return x.email == y.email ? 0 : x.email < y.email ? 1 : -1;
+    }
+    this.rec.sort(SortBy).reverse();
+  }
+  getDescendingOrderForPhnno() {
+    this.rec = this.list.records;
+    function SortBy(x, y) {
+      return x.phnno == y.phnno ? 0 : x.phnno > y.phnno ? 1 : -1;
+    }
+    this.rec.sort(SortBy).reverse();
+  }
 }
 
