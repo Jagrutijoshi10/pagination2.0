@@ -1,15 +1,10 @@
 <div class="jumbotron">
-  <header>
-    {{ "The Total number of Employees are " + totalLength }}<br />
-    <span>
-      <form class="form-inline">
-        <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
-        <input class="form-control form-control-sm ml-3 w-75"  [(ngModel)]="searchText" value= '12' name="searchText" type="text" placeholder="Search" aria-label="Search" />
-      </form>
-    </span>
-    <!-- <div *ngIf="searchedList then faketemplate">
-      <p>success</p>
-    </div> -->
+  <header class="container">
+    <!-- {{ "The Total number of Employees are " + totalLength }}<br /> -->
+    <div class="form-group has-feedback">
+      <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" name="searchText">
+      <span class="container" class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
   </header>
 
   <body>
@@ -17,55 +12,53 @@
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-            <th>
+            <th class="collapsible" data-collapsible="accordion">
               Id
-              <span>
-                <span class="btn-group" role="group"><button type="button" class="btn btn-light"
-                    (click)="getAscendingOrderForId()">
-                    <span class="fa fa-arrow-up"></span>
-                  </button>
-                  <button type="button" class="btn btn-light" (click)="getDescendingOrderForId()">
-                    <span class="fa fa-arrow-down"></span></button></span></span>
+              <span ng-class="{'glyphicon glyphicon-arrow-down':uparrow,'glyphicon glyphicon-arrow-up':!uparrow}" (click)="uparrow=!uparrow"
+               >
+                <a class="right" *ngIf="!uparrow" (click)="getAscendingOrderForId()" >
+                  <span  class="glyphicon glyphicon-arrow-up"></span>
+                </a>
+                <a class="right" *ngIf="uparrow" (click)="getDescendingOrderForId()">
+                  <span  class="glyphicon glyphicon-arrow-down"></span></a></span>
             </th>
             <th>
               Name
-              <span><span class="btn-group" role="group"><button type="button" class="btn btn-light"
-                    (click)="getAscendingOrderForName()">
-                    <span class="fa fa-arrow-up"></span>
-                  </button>
-                  <button type="button" class="btn btn-light" (click)="getDescendingOrderForName()">
-                    <span class="fa fa-arrow-down"></span></button></span></span>
+              <span ng-class="{'glyphicon glyphicon-arrow-down':uparrow,'glyphicon glyphicon-arrow-up':!uparrow}" (click)="uparrow=!uparrow">
+                <a class="right" *ngIf="!uparrow" (click)="getAscendingOrderForName()">
+                  <span class="glyphicon glyphicon-arrow-up"></span>
+                </a>
+                <a class="right" *ngIf="uparrow" (click)="getDescendingOrderForName()">
+                  <span class="glyphicon glyphicon-arrow-down"></span></a></span>
             </th>
             <th>
               Email
-              <span><span class="btn-group" role="group"><button type="button" class="btn btn-light"
-                    (click)="getAscendingOrderForEmail()">
-                    <span class="fa fa-arrow-up"></span>
-                  </button>
-                  <button type="button" class="btn btn-light" (click)="getDescendingOrderForEmail()">
-                    <span class="fa fa-arrow-down"></span></button></span></span>
+              <span ng-class="{'glyphicon glyphicon-arrow-down':uparrow,'glyphicon glyphicon-arrow-up':!uparrow}" (click)="uparrow=!uparrow"><a class="right" *ngIf="!uparrow" (click)="getAscendingOrderForEmail()">
+                  <span class="glyphicon glyphicon-arrow-up"></span>
+                </a>
+                <a class="right" *ngIf="uparrow" (click)="getDescendingOrderForEmail()">
+                  <span class="glyphicon glyphicon-arrow-down"></span></a></span>
             </th>
             <th>
               Phone Number
-              <span><span class="btn-group" role="group"><button type="button" class="btn btn-light"
-                    (click)="getAscendingOrderForPhnno()">
-                    <span class="fa fa-arrow-up"></span>
-                  </button>
-                  <button type="button" class="btn btn-light" (click)="getDescendingOrderForPhnno()">
-                    <span class="fa fa-arrow-down"></span></button></span></span>
+              <span ng-class="{'glyphicon glyphicon-arrow-down':uparrow,'glyphicon glyphicon-arrow-up':!uparrow}" (click)="uparrow=!uparrow"><a class="right" *ngIf="!uparrow" (click)="getAscendingOrderForPhnno()">
+                  <span class="glyphicon glyphicon-arrow-up"></span>
+                </a>
+                <a class="right" *ngIf="uparrow" (click)="getDescendingOrderForPhnno()">
+                  <span class="glyphicon glyphicon-arrow-down"></span></a></span>
             </th>
           </tr>
         </thead>
         <tbody>
-          <!-- <p>{{(rec| search:searchText) | json}}</p> -->
-        <tr *ngFor="let emp of rec | search:searchText" ng-if = "emp">
-          <td>
-            <b>{{ emp.empid }}</b>
-          </td>
-          <td>{{ emp.name }}</td>
-          <td>{{ emp.email }}</td>
-          <td>{{ emp.phnno }}</td>
-        </tr></tbody>
+          <tr *ngFor="let emp of rec | search:searchText">
+            <td>
+              <b>{{ emp.empid }}</b>
+            </td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.phnno }}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </body>
@@ -77,4 +70,17 @@
     </span>
   </footer>
 </div>
-<!-- (keyup)="search($event.target.value)" -->
+<!--class="btn btn-light" class="btn-group" type="button"  (keyup)="search($event.target.value)" 
+
+    <div >
+        <span class="glyphicon glyphicon-search" ></span>
+      <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" name="searchText">
+      <i class="glyphicon glyphicon-search"></i>
+    </div>
+    workable
+    <div  class="container">
+     <div class="input-group" >
+        <input class="form-control ">
+        <span class="input-group-addon bg-white"><i class="glyphicon glyphicon-search"></i></span>
+    </div></div>
+    -->

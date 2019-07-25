@@ -9,9 +9,10 @@ table.cen,tr.cen
 .cent{
   text-align: center;
 }
-span.right{
+.right{
     float: right;
 }
  .colors{
    background-color: red;
   }
+ 

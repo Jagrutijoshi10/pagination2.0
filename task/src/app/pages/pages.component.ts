@@ -1,11 +1,11 @@
 import { Component, OnInit, Input ,Output,EventEmitter} from "@angular/core";
 import { PagesserviceService } from "../pagesservice.service";
-import { SearchPipe } from "../search.pipe";
+
 @Component({
   selector: "app-pages",
   templateUrl: "./pages.component.html",
   styleUrls: ["./pages.component.css"],
-  providers:[SearchPipe]
+
 })
 export class PagesComponent implements OnInit {
   list: any=[];
@@ -19,12 +19,10 @@ export class PagesComponent implements OnInit {
   currentPage = 0;
   alldata=[];
   public searchText:string='';
-
-//  @Input() searchText;
-//  @Output() searchModelChange: EventEmitter<any> = new EventEmitter();
-  public items=[]
-  constructor(private pagesService: PagesserviceService,private data:SearchPipe) {
-  }
+  public items=[];
+ uparrow=true
+ error:string="no data found"
+  constructor(private pagesService: PagesserviceService) {}
 
   ngOnInit() {
     this.pagesService.getuser(0, this.limit).subscribe(data => {
@@ -35,8 +33,12 @@ export class PagesComponent implements OnInit {
       for (let i = 0; i < this.totalPages; i++) {
         this.pages.push(i);
       }
-      console.log(this.rec)
-    });
+    }
+    // ,(err:string)=>{
+    //         this.error=err;
+            
+    // }
+    );
        
   }
 
@@ -50,11 +52,10 @@ export class PagesComponent implements OnInit {
     this.pagesService.getuser(this.start, this.end).subscribe(data => {
       this.list = data;
       // this.alldata=this.list.alldata;
-   
       this.rec = this.list.records;
     });
   }
-
+  
   getAscendingOrderForId() {
     this.rec = this.list.records;
     function SortBy(x, y) {
